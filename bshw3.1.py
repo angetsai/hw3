@@ -21,4 +21,6 @@ for story_heading in soup.find_all(class_="story-heading"): #find tags used to i
         student.append(story_heading.a.text.replace("\n", " ").strip()) #if has anchor tag, add to list 
     else:                                                                       #also strip strings and replace new lines and tabs with regular spaces
         student.append(story_heading.contents[0].strip()) 
+        
+uprint ("hi")
 
