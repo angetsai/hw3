@@ -51,15 +51,18 @@ print("\n\n")
  #   if word == 'NOUN':
         #replace.
 
-debug = False #True
+#debug = False #True
 
 # get file from user to make mad lib out of
-if debug:
-	print ("Getting information from file madlib_test.txt...\n")
-fname = "madlibtest2.txt" # need a file with this name in directory
+#if debug:
+#	print ("Getting information from file madlib_test.txt...\n")
+#fname = "madlibtest2.txt" # need a file with this name in directory
 
-f = open(fname, 'r')
-para = f.read()
+#fname = "text2"
+#f = open(fname, 'r') 
+#f = open(fname, 'text2')
+#para = f.read()
+para = "".join(textblank) 
 tokens = nltk.word_tokenize(para)
 #print("TOKENS")
 #print(tokens)
@@ -67,13 +70,13 @@ tagged_tokens = nltk.pos_tag(tokens) # gives us a tagged list of tuples
 #print("TAGGED TOKENS")
 #print(tagged_tokens)
 
-if debug:
-	print ("First few tagged tokens are:")
-	for tup in tagged_tokens[:5]:
-		print (tup)
+#if debug:
+#	print ("First few tagged tokens are:")
+#	for tup in tagged_tokens[:5]:
+#		print (tup)
 
 tagmap = {"NN":"a noun","NNS":"a plural noun","VB":"a verb","ADV":"an adverb","ADJ":"an adjective"}
-substitution_probabilities = {"NN":.15,"NNS":.15,"VB":.1,"ADV":.1,"ADJ":.1}
+substitution_probabilities = {"NN":.15,"NNS":.1,"VB":.1,"ADV":.1,"ADJ":.1}
 
 def spaced(word):
 	if word in [",", ".", "?", "!", ":", ";"]:

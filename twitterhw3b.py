@@ -5,7 +5,7 @@
 # 2) Print the average subjectivity of the results
 # 3) Print the average polarity of the results
 
-# Be prepared to change the search term during demo.
+## Be prepared to change the search term during demo.
 
 import tweepy
 from textblob import TextBlob
@@ -34,13 +34,34 @@ auth.set_access_token(access_token,access_token_secret)
 api = tweepy.API(auth)
 #Now we can Create Tweets, Delete Tweets, and Find Twitter Users
 
-public_tweets = api.search('UMSI')
-public_tweets = api.search('"Gilmore Girls" geocode:40.6781784,-73.94415789999999,10km')
+#https://api.twitter.com/1.1/search/tweets.json?q=%40twitterapi
+
+public_tweets = api.search('Hannah Montana')
+
+subjectivity = []
+polarity = []
 
 for tweet in public_tweets:
-	uprint(tweet.text)
-	analysis = TextBlob(tweet.text)
-	uprint(analysis.sentiment)
+    uprint(tweet.text)
+    analysis = TextBlob(tweet.text)
+    polarity.append(analysis.sentiment[0])
+    subjectivity.append(analysis.sentiment[1])
+#subjectivity = analysis.sentiment[1]
+#polarity = analysis.sentiment[0]
+#uprint(analysis.sentiment)
+# for x in analysis.sentiment:
+# if analysis.sentiment[0] == True:
+#     subjectivity.append()
+# if analysis.sentiment[1] == True:
+#     polarity.append()
+   
+avg_sub = sum(subjectivity)/len(subjectivity)
+avg_pol = sum(polarity)/len(subjectivity) 
+
+
+
+#for y in range(x, len(subjectivity)):
+    #count += 1         
 
 
 for tweet in public_tweets:
@@ -52,21 +73,23 @@ for tweet in public_tweets:
 #1 Sentiment Analysis - Understand and Extracting Feelings from Data
 
 
-def process_or_store(tweet):
-	uprint(tweet.get('user').get('screen_name'))
-	uprint(tweet.get('text').encode('unicode_escape'))
-	uprint(tweet.get('created_at'))
+#def process_or_store(tweet):
+#	uprint(tweet.get('user').get('screen_name'))
+#	uprint(tweet.get('text').encode('unicode_escape'))
+#	uprint(tweet.get('created_at'))
 
-for status in tweepy.Cursor(api.home_timeline).items(10):
+#for status in tweepy.Cursor(api.home_timeline).items(10):
     # Process a single status
-    process_or_store(status._json) 
+ #   process_or_store(status._json) 
 
 
-for tweet in tweepy.Cursor(api.user_timeline).items():
-    process_or_store(tweet._json)
+#for tweet in tweepy.Cursor(api.user_timeline).items():
+ #   process_or_store(tweet._json)
 
-
-print("Average subjectivity is")
-print("Average polarity is")
+    
+#avg_sub = 
+#avg_pol = 
+print("Average subjectivity is", avg_sub)
+print("Average polarity is", avg_pol)
 
 

@@ -28,12 +28,12 @@ url = 'http://collemc.people.si.umich.edu/data/bshw3StarterFile.html' #hardcode 
 html = urllib.request.urlopen(url).read() #uses urllib library to fetch the URL given
 soup = BeautifulSoup(html, 'lxml') #recode the HTML with HTML parser
 
-student = [] #create list to hold all the headlines grabbed from website
-for story_heading in soup.find_all(class_="story-heading"): #find tags used to identify headlines >>> need anchor tag
-    if story_heading.p: 
-        student.append(story_heading.a.text.replace("\n", " ").strip()) #if has anchor tag, add to list 
-    else:                                                                       #also strip strings and replace new lines and tabs with regular spaces
-        student.append(story_heading.contents[0].strip()) 
-        
-uprint ("bye")
+soup = str(soup)
 
+string1 = string.replace("students", "AMAZING students")
+string2 = string.replace("
+#make soup a string. string method replace. create a new file f = open('BSI.html,', 'w') f.write(pass new string) f.close() 
+
+f = open('BSI.html', 'w')
+f.write()
+f.close()
