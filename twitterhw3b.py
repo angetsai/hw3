@@ -10,6 +10,7 @@
 import tweepy
 from textblob import TextBlob
 import sys
+import json
 
 def uprint(*objects, sep=' ', end='\n', file=sys.stdout):
     enc = file.encoding
@@ -33,7 +34,8 @@ auth.set_access_token(access_token,access_token_secret)
 api = tweepy.API(auth)
 #Now we can Create Tweets, Delete Tweets, and Find Twitter Users
 
-public_tweets = api.search('"Gilmore Girls" @netflix')
+public_tweets = api.search('UMSI')
+public_tweets = api.search('"Gilmore Girls" geocode:40.6781784,-73.94415789999999,10km')
 
 for tweet in public_tweets:
 	uprint(tweet.text)
@@ -41,12 +43,30 @@ for tweet in public_tweets:
 	uprint(analysis.sentiment)
 
 
+for tweet in public_tweets:
+	uprint(tweet.text)
+
 #polarity -- measures how positive or negative
 #subjectivity -- measures how factual.
 
 #1 Sentiment Analysis - Understand and Extracting Feelings from Data
 
 
+def process_or_store(tweet):
+	uprint(tweet.get('user').get('screen_name'))
+	uprint(tweet.get('text').encode('unicode_escape'))
+	uprint(tweet.get('created_at'))
+
+for status in tweepy.Cursor(api.home_timeline).items(10):
+    # Process a single status
+    process_or_store(status._json) 
+
+
+for tweet in tweepy.Cursor(api.user_timeline).items():
+    process_or_store(tweet._json)
+
 
 print("Average subjectivity is")
 print("Average polarity is")
+
+
