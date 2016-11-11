@@ -34,9 +34,8 @@ auth.set_access_token(access_token,access_token_secret)
 api = tweepy.API(auth)
 #Now we can Create Tweets, Delete Tweets, and Find Twitter Users
 
-#https://api.twitter.com/1.1/search/tweets.json?q=%40twitterapi
 
-public_tweets = api.search('Donald Trump')
+public_tweets = api.search('Corgis')
 
 subjectivity = []
 polarity = []
@@ -46,22 +45,9 @@ for tweet in public_tweets:
     analysis = TextBlob(tweet.text)
     polarity.append(analysis.sentiment[0])
     subjectivity.append(analysis.sentiment[1])
-#subjectivity = analysis.sentiment[1]
-#polarity = analysis.sentiment[0]
-#uprint(analysis.sentiment)
-# for x in analysis.sentiment:
-# if analysis.sentiment[0] == True:
-#     subjectivity.append()
-# if analysis.sentiment[1] == True:
-#     polarity.append()
-   
+
 avg_sub = sum(subjectivity)/len(subjectivity)
 avg_pol = sum(polarity)/len(subjectivity) 
-
-
-
-#for y in range(x, len(subjectivity)):
-    #count += 1         
 
 
 for tweet in public_tweets:
@@ -70,25 +56,8 @@ for tweet in public_tweets:
 #polarity -- measures how positive or negative
 #subjectivity -- measures how factual.
 
-#1 Sentiment Analysis - Understand and Extracting Feelings from Data
-
-
-#def process_or_store(tweet):
-#	uprint(tweet.get('user').get('screen_name'))
-#	uprint(tweet.get('text').encode('unicode_escape'))
-#	uprint(tweet.get('created_at'))
-
-#for status in tweepy.Cursor(api.home_timeline).items(10):
-    # Process a single status
- #   process_or_store(status._json) 
-
-
-#for tweet in tweepy.Cursor(api.user_timeline).items():
- #   process_or_store(tweet._json)
-
-    
-#avg_sub = 
-#avg_pol = 
+#Sentiment Analysis - Understand and Extracting Feelings from Data
+ 
 print("Average subjectivity is", avg_sub)
 print("Average polarity is", avg_pol)
 

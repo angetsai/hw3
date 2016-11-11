@@ -25,14 +25,9 @@ def uprint(*objects, sep=' ', end='\n', file=sys.stdout): #function that will he
         print(*map(f, objects), sep=sep, end=end, file=file)
               
 
-#print ("BSI Admissions - U of M School of Info")
 url = 'http://collemc.people.si.umich.edu/data/bshw3StarterFile.html' #hardcode the url we want
 html = urllib.request.urlopen(url).read() #uses urllib library to fetch the URL given
 soup = BeautifulSoup(html, 'lxml') #recode the HTML with HTML parser
-
-#for img in soup.findAll('img'):
-#    img['src'] = 'cid:' + splitext(basename(img['src']))[0]
-#html = str(soup)  
 
 soup_string = str(soup)
 
