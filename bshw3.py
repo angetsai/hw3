@@ -14,6 +14,7 @@
 import urllib.request 
 from bs4 import BeautifulSoup 
 import sys
+from os.path import basename, splitext
 
 def uprint(*objects, sep=' ', end='\n', file=sys.stdout): #function that will help with encoding/decoding
     enc = file.encoding
@@ -22,18 +23,24 @@ def uprint(*objects, sep=' ', end='\n', file=sys.stdout): #function that will he
     else:
         f = lambda obj: str(obj).encode(enc, errors='backslashreplace').decode(enc)
         print(*map(f, objects), sep=sep, end=end, file=file)
+              
 
-print ("BSI Admissions - U of M School of Info")
+#print ("BSI Admissions - U of M School of Info")
 url = 'http://collemc.people.si.umich.edu/data/bshw3StarterFile.html' #hardcode the url we want
 html = urllib.request.urlopen(url).read() #uses urllib library to fetch the URL given
 soup = BeautifulSoup(html, 'lxml') #recode the HTML with HTML parser
 
-soup = str(soup)
+#for img in soup.findAll('img'):
+#    img['src'] = 'cid:' + splitext(basename(img['src']))[0]
+#html = str(soup)  
 
-string1 = string.replace("students", "AMAZING students")
-string2 = string.replace("
+soup_string = str(soup)
+
+string1 = soup_string.replace("students", "AMAZING students")
+string2 = string1.replace("https://testbed.files.wordpress.com/2012/09/bsi_exposition_041316_192.jpg", "media/angel.jpg")
+string3 = string2.replace("logo2.png","media/logo.png")
 #make soup a string. string method replace. create a new file f = open('BSI.html,', 'w') f.write(pass new string) f.close() 
 
-f = open('BSI.html', 'w')
-f.write()
+f = open('BSI_Admissions.html', 'w')
+f.write(string3)
 f.close()

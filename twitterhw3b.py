@@ -36,7 +36,7 @@ api = tweepy.API(auth)
 
 #https://api.twitter.com/1.1/search/tweets.json?q=%40twitterapi
 
-public_tweets = api.search('Hannah Montana')
+public_tweets = api.search('Donald Trump')
 
 subjectivity = []
 polarity = []

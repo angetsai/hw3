@@ -41,7 +41,7 @@ def main():
     }
 
   api = get_api(cfg)
-  image_path = "corgi.jpg" 
+  image_path = "media/corgi.jpg" 
   tweet = "#UMSI206 #Proj3"
   #status = api.update_status(status=tweet) 
   media = api.update_with_media(image_path, status=tweet)
