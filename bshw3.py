@@ -29,11 +29,11 @@ url = 'http://collemc.people.si.umich.edu/data/bshw3StarterFile.html' #hardcode 
 html = urllib.request.urlopen(url).read() #uses urllib library to fetch the URL given
 soup = BeautifulSoup(html, 'lxml') #recode the HTML with HTML parser
 
-soup_string = str(soup)
+soup_string = str(soup) #make the html file an entire string
 
-string1 = soup_string.replace("students", "AMAZING students")
-string2 = string1.replace("https://testbed.files.wordpress.com/2012/09/bsi_exposition_041316_192.jpg", "media/angel.jpg")
-string3 = string2.replace("logo2.png","media/logo.png")
+string1 = soup_string.replace("students", "AMAZING students") #replace all instances of "students"
+string2 = string1.replace("https://testbed.files.wordpress.com/2012/09/bsi_exposition_041316_192.jpg", "media/angel.jpg") #in new string, replace the main image
+string3 = string2.replace("logo2.png","media/logo.png") #in the most updated string, replace the local image at top
 #make soup a string. string method replace. create a new file f = open('BSI.html,', 'w') f.write(pass new string) f.close() 
 
 f = open('BSI_Admissions.html', 'w')
