@@ -5,14 +5,18 @@
 # 2) Print the average subjectivity of the results
 # 3) Print the average polarity of the results
 
-## Be prepared to change the search term during demo.
+# Sentiment Analysis - Understand and Extracting Feelings from Data
+## polarity -- measures how positive or negative
+## subjectivity -- measures how factual.
+
+### Be prepared to change the search term during demo.
 
 import tweepy
 from textblob import TextBlob
 import sys
-import json
 
-def uprint(*objects, sep=' ', end='\n', file=sys.stdout):
+# function that will help with encoding/decoding
+def uprint(*objects, sep=' ', end='\n', file=sys.stdout): 
     enc = file.encoding
     if enc == 'UTF-8':
         print(*objects, sep=sep, end=end, file=file)
@@ -30,35 +34,27 @@ consumer_secret = "EfhAxqvWP7VoFVTxPO4GJDlKgjiqYLiLSSCxtOaDSwBHS7WFQa"
 # Boilerplate code here
 auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
 auth.set_access_token(access_token,access_token_secret)
-
 api = tweepy.API(auth)
-#Now we can Create Tweets, Delete Tweets, and Find Twitter Users
 
 
-public_tweets = api.search('Corgis')
+public_tweets = api.search('Thanksgiving')       # input search term
 
-subjectivity = []
+subjectivity = []                               # make two empty lists for subjectivity and polarity
 polarity = []
 
-for tweet in public_tweets:
+for tweet in public_tweets:                     # loop through all the tweets that appear for search term
     uprint(tweet.text)
-    analysis = TextBlob(tweet.text)
-    polarity.append(analysis.sentiment[0])
-    subjectivity.append(analysis.sentiment[1])
+    analysis = TextBlob(tweet.text)     
+    polarity.append(analysis.sentiment[0])      # add the first value in analysis.sentiment to the polarity list, and second to subjectivity list
+    subjectivity.append(analysis.sentiment[1])     
 
-avg_sub = sum(subjectivity)/len(subjectivity)
-avg_pol = sum(polarity)/len(subjectivity) 
+avg_sub = sum(subjectivity)/len(subjectivity)   # divide the sum of all subjectivity scores by how many scores there are to find average
+avg_pol = sum(polarity)/len(subjectivity)       # same process to find the average polarity score
 
-
-for tweet in public_tweets:
+for tweet in public_tweets:                     # print all tweets
 	uprint(tweet.text)
-
-#polarity -- measures how positive or negative
-#subjectivity -- measures how factual.
-
-#Sentiment Analysis - Understand and Extracting Feelings from Data
- 
-print("Average subjectivity is", avg_sub)
+    
+print("Average subjectivity is", avg_sub)       # print the average scores
 print("Average polarity is", avg_pol)
 
 

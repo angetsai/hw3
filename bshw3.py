@@ -14,9 +14,9 @@
 import urllib.request 
 from bs4 import BeautifulSoup 
 import sys
-from os.path import basename, splitext
 
-def uprint(*objects, sep=' ', end='\n', file=sys.stdout): #function that will help with encoding/decoding
+# function that will help with encoding/decoding
+def uprint(*objects, sep=' ', end='\n', file=sys.stdout): 
     enc = file.encoding
     if enc == 'UTF-8':
         print(*objects, sep=sep, end=end, file=file)
@@ -25,17 +25,17 @@ def uprint(*objects, sep=' ', end='\n', file=sys.stdout): #function that will he
         print(*map(f, objects), sep=sep, end=end, file=file)
               
 
-url = 'http://collemc.people.si.umich.edu/data/bshw3StarterFile.html' #hardcode the url we want
-html = urllib.request.urlopen(url).read() #uses urllib library to fetch the URL given
-soup = BeautifulSoup(html, 'lxml') #recode the HTML with HTML parser
+url = 'http://collemc.people.si.umich.edu/data/bshw3StarterFile.html'           # hardcode the url we want
+html = urllib.request.urlopen(url).read()                                       # uses urllib library to fetch the URL given
+soup = BeautifulSoup(html, 'lxml')                                              # recode the HTML with HTML parser
 
-soup_string = str(soup) #make the html file an entire string
+soup_string = str(soup)                                                         # make the entire HTML file a string
 
-string1 = soup_string.replace("students", "AMAZING students") #replace all instances of "students"
-string2 = string1.replace("https://testbed.files.wordpress.com/2012/09/bsi_exposition_041316_192.jpg", "media/angel.jpg") #in new string, replace the main image
-string3 = string2.replace("logo2.png","media/logo.png") #in the most updated string, replace the local image at top
-#make soup a string. string method replace. create a new file f = open('BSI.html,', 'w') f.write(pass new string) f.close() 
+string1 = soup_string.replace("students", "AMAZING students")                   # make a new string where you replace all instances of "students"
+string2 = string1.replace("https://testbed.files.wordpress.com/2012/09/bsi_exposition_041316_192.jpg", "media/angel.jpg") # make another string that keeps changes just  
+                                                                                                                          # made, then replace main image with own
+string3 = string2.replace("logo2.png","media/logo.png")                         # make final string that has all updates, then replace local image 
 
-f = open('BSI_Admissions.html', 'w')
-f.write(string3)
+f = open('BSI_Admissions.html', 'w')                                            # create new file if file doesn't exist, or truncate the existing file 
+f.write(string3)                                                                # pass your message (string3) into the file
 f.close()

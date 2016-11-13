@@ -7,8 +7,6 @@
 import tweepy
 from textblob import TextBlob
 import sys
-import os
-import requests
 
 # Boilerplate code here
 def get_api(cfg):
@@ -17,19 +15,18 @@ def get_api(cfg):
   return tweepy.API(auth)
 
 
-def main():
-  # Unique code from Twitter
-  cfg = { 
+def main():                                         # write code within one function that we can run later
+  cfg = {                                           # Unique code from Twitter
     "consumer_key"        : "cKKu7YX8zB4MxdIaorIFAIUrB",
     "consumer_secret"     : "EfhAxqvWP7VoFVTxPO4GJDlKgjiqYLiLSSCxtOaDSwBHS7WFQa",
     "access_token"        : "2546126607-MwJvheq6bGtvvJk3XsZju5XNYFWABrsvgKMBv9z",
     "access_token_secret" : "ugAOGH8F9C7f8hFIGjHXA3lC1KeuA9kwI7WNQavf7GIgr" 
     }
 
-  api = get_api(cfg)
-  image_path = "media/corgi.jpg" 
+  api = get_api(cfg)                                # set variable equal to function get_api(cfg) that connects to Twitter account
+  image_path = "media/corgi.jpg"                    # direct the image file using a relative path of the image
   tweet = "#UMSI206 #Proj3"
-  media = api.update_with_media(image_path, status=tweet)
+  media = api.update_with_media(image_path, tweet)  # sends image and tweet to Twitter account
   
 
 if __name__ == "__main__":
