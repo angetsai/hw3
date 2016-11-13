@@ -51,7 +51,7 @@ def spaced(word):
 	else:
 		return " " + word
 
-final_words = []                                                                                        # new empty list
+final_words = []                                                                                        # create new empty list
 
 for (word, tag) in tagged_tokens:                                                                       # loop through entire tokenized text
 	if tag not in substitution_probabilities or random.random() > substitution_probabilities[tag]:      # if tag is not one that we defined, append to list

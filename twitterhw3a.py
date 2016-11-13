@@ -15,7 +15,7 @@ def get_api(cfg):
   return tweepy.API(auth)
 
 
-def main():                                         # write code within one function that we can run later
+def main():                                         # write code within one function that can run later
   cfg = {                                           # Unique code from Twitter
     "consumer_key"        : "cKKu7YX8zB4MxdIaorIFAIUrB",
     "consumer_secret"     : "EfhAxqvWP7VoFVTxPO4GJDlKgjiqYLiLSSCxtOaDSwBHS7WFQa",

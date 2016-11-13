@@ -26,12 +26,12 @@ def uprint(*objects, sep=' ', end='\n', file=sys.stdout):
               
 
 url = 'http://collemc.people.si.umich.edu/data/bshw3StarterFile.html'           # hardcode the url we want
-html = urllib.request.urlopen(url).read()                                       # uses urllib library to fetch the URL given
+html = urllib.request.urlopen(url).read()                                       # use urllib library to fetch the URL given
 soup = BeautifulSoup(html, 'lxml')                                              # recode the HTML with HTML parser
 
 soup_string = str(soup)                                                         # make the entire HTML file a string
 
-string1 = soup_string.replace("students", "AMAZING students")                   # make a new string where you replace all instances of "students"
+string1 = soup_string.replace("students", "AMAZING students")                   # make new string where you replace all instances of "students"
 string2 = string1.replace("https://testbed.files.wordpress.com/2012/09/bsi_exposition_041316_192.jpg", "media/angel.jpg") # make another string that keeps changes just  
                                                                                                                           # made, then replace main image with own
 string3 = string2.replace("logo2.png","media/logo.png")                         # make final string that has all updates, then replace local image 
